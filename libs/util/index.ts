@@ -1,3 +1,4 @@
+import { z } from "zod";
 
 export const wait = (duration: number): Promise<number> => {
     return new Promise((resolve, reject) => {
@@ -9,4 +10,18 @@ export const wait = (duration: number): Promise<number> => {
             }
         }, duration);
     });
-} 
+};
+
+const ProfileSchema = z.object({
+    user_agent: z.string()
+});
+
+type Profile = z.infer<typeof ProfileSchema>;
+
+export const fetchProfile = async (): Promise<Profile> => {
+    const response = await fetch("http://httpbin.org/user-agent");
+    if (!response.ok) {
+        throw new Error("cannot recieve response");
+    }
+    return ProfileSchema.parse(await response.json());
+}
