@@ -1,6 +1,11 @@
 
 export const add = (a: number, b: number): number => {
-    return a + b;
+
+    if (a < 0 || 100 < a || b < 0 || 100 < b) {
+        throw new Error("入力値は0～100の間にしてください");
+    }
+
+    return Math.min(100, a + b);
 }
 
 export const sub = (a: number, b: number): number => {
