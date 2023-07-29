@@ -25,3 +25,13 @@ export const fetchProfile = async (): Promise<Profile> => {
     }
     return ProfileSchema.parse(await response.json());
 }
+
+export const onChange = async (callback: (text: string) => void): Promise<number> => {
+    const time = 50;
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            callback("hello world");
+            resolve(time);
+        }, time);
+    });
+}
