@@ -1,4 +1,4 @@
-import { add, sub } from "./index"
+import { add, sub, RangeError } from "./index"
 
 describe("add", () => {
     test("1 + 2 = 3 になる", () => {
@@ -10,7 +10,7 @@ describe("add", () => {
     });
 
     test("範囲外の数字を入れたら例外を出す", () => {
-        expect(() => add(-1, 40)).toThrow();
+        expect(() => add(-1, 40)).toThrow(RangeError);
     });
 });
 
